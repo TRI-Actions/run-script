@@ -1,0 +1,52 @@
+name: 'run-script'
+description: 'Custom action to run arbitrary scripts'
+inputs:
+  lang:
+    description: 'language to use to run the script'
+    required: true
+  dir:
+    description: 'path of script directory'
+    default: '.'
+  name:
+    description: 'name of the script including extension'
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Set GitHub Path
+      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+      shell: bash
+      env:
+        GITHUB_ACTION_PATH: ${{ github.action_path }}
+    - name: Run bash script
+      if: ${{ inputs.lang == 'shell' }}
+      id: shell
+      run: ${{ inputs.dir }}/${{ inputs.name }}
+      shell: bash
+    - name: Run python script
+      if: ${{ inputs.lang == 'python' }}
+      id: python
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f ${{ inputs.dir }}/requirements.txt ]; then pip install -r ${{ inputs.dir }}/requirements.txt; fi
+      shell: bash
+    - name: Run python script
+      if: ${{ inputs.lang == 'python' }}
+      id: python
+      run: |
+        python ${{ inputs.dir }}/${{ inputs.name }}
+      shell: bash
+    - name: Run java
+      if: ${{ inputs.lang == 'java' }}
+      id: java
+      run: |
+        java -jar ${{ inputs.dir }}/${{ inputs.name }}
+      shell: bash
+    - name: Run javascript
+      if: ${{ inputs.lang == 'javascript' }}
+      id: javascript
+      run: |
+        node ${{ inputs.dir }}/${{ inputs.name }}
+      shell: bash
+
