@@ -26,7 +26,7 @@ runs:
       shell: bash
     - name: Run python script
       if: ${{ inputs.lang == 'python' }}
-      id: python
+      id: pip
       run: |
         python -m pip install --upgrade pip
         if [ -f ${{ inputs.dir }}/requirements.txt ]; then pip install -r ${{ inputs.dir }}/requirements.txt; fi
