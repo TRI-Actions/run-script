@@ -10,7 +10,10 @@ inputs:
   name:
     description: 'name of the script including extension'
     required: true
-
+outputs:
+  stdout:
+    description: "Random number"
+    value: ${{ steps.random-number-generator.outputs.random-number }}
 runs:
   using: composite
   steps:
@@ -22,7 +25,7 @@ runs:
     - name: Run bash script
       if: ${{ inputs.lang == 'shell' }}
       id: shell
-      run: ${{ inputs.dir }}/${{ inputs.name }}
+      run: ${{ inputs.dir }}/${{ inputs.name }} > output.txt
       shell: bash
     - name: Run python script
       if: ${{ inputs.lang == 'python' }}
@@ -35,18 +38,24 @@ runs:
       if: ${{ inputs.lang == 'python' }}
       id: python
       run: |
-        python ${{ inputs.dir }}/${{ inputs.name }}
+        python ${{ inputs.dir }}/${{ inputs.name }} > output.txt
       shell: bash
     - name: Run java
       if: ${{ inputs.lang == 'java' }}
       id: java
       run: |
-        java -jar ${{ inputs.dir }}/${{ inputs.name }}
+        java -jar ${{ inputs.dir }}/${{ inputs.name }} > output.txt
       shell: bash
     - name: Run javascript
       if: ${{ inputs.lang == 'javascript' }}
       id: javascript
       run: |
-        node ${{ inputs.dir }}/${{ inputs.name }}
+        node ${{ inputs.dir }}/${{ inputs.name }} > output.txt
       shell: bash
+    - name: Set output
+      if: always()
+      id: output
+      shell: bash
+      run: |
+        echo "stdout=$(cat output.txt)" >> $GITHUB_OUTPUT
 
