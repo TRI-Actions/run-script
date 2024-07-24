@@ -13,7 +13,7 @@ inputs:
 outputs:
   stdout:
     description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-number }}
+    value: ${{ steps.output.outputs.stdout }}
 runs:
   using: composite
   steps:
@@ -57,5 +57,5 @@ runs:
       id: output
       shell: bash
       run: |
-        echo "stdout=$(cat output.txt)" >> $GITHUB_OUTPUT
-
+        output=$(cat output.txt)
+        echo "stdout=$output" >> $GITHUB_OUTPUT
