@@ -22,8 +22,11 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Run script
+      id: run_script
       uses: infrastructure/run-script@v0.0.1
       with:
         lang: python
         name: test.py
+    - name: Display Output
+        run: echo "Output: ${{ steps.run_script.outputs.stdout }}"
 ```
