@@ -12,7 +12,7 @@ inputs:
     required: true
 outputs:
   stdout:
-    description: "Random number"
+    description: "Std out"
     value: ${{ steps.output.outputs.stdout }}
 runs:
   using: composite
