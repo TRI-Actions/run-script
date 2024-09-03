@@ -1,12 +1,12 @@
 # Run Script
 
-A composite custom github action that runs given script in different languages.
+A composite custom github action that runs given script in different languages and sets the output to output.txt
 
 ## Parameters
 
 | Name          | Description                                        | Required | Default         |
 |---------------|----------------------------------------------------|----------|-----------------|
-| path           | Path of the script.                                | No       | `.`             |
+| path           | Path of the script/ directory that the scripts are located                                | No       | `.`             |
 
 ## Example
 
@@ -25,5 +25,5 @@ jobs:
       with:
         path: "."
     - name: Display Output
-        run: echo "Output: ${{ steps.run_script.outputs.stdout }}"
+        run: echo "Output: $(cat output.txt)"
 ```
