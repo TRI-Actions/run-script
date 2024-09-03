@@ -58,5 +58,7 @@ runs:
         run_scripts "java" "java -jar"
 
     - name: Set outputs
+      id: outputs
+      shell: bash
       run: |
         echo "outputs=$(cat output.txt)" >> $GITHUB_OUTPUT
