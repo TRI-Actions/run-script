@@ -31,13 +31,13 @@ runs:
             if [ ${#array[@]} -gt 0 ]; then
               for script in ${{ inputs.path }}/*.$type; do
                 echo "" >> output.txt
-                echo "$script output:" >> output.txt
+                echo "$script output..." >> output.txt
                 $command "$script" >> output.txt
               done
             fi
           elif [[ ${{ inputs.path }} == *.$type ]]; then
             echo "" >> output.txt
-            echo "$script output:" >> output.txt
+            echo "$script output..." >> output.txt
             $command "${{ inputs.path }}" >> output.txt
           fi
         }
