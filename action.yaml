@@ -56,3 +56,7 @@ runs:
         run_scripts "js" "node"
 
         run_scripts "java" "java -jar"
+
+    - name: Set outputs
+      run: |
+        echo "outputs=$(cat output.txt)" >> $GITHUB_OUTPUT
