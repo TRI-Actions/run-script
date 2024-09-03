@@ -62,4 +62,5 @@ runs:
       id: output
       shell: bash
       run: |
-        echo "stdout=$(cat output.txt)" >> $GITHUB_OUTPUT
+        output=$(cat output.txt)
+        echo "stdout=$(cat output.txt)" >> $GITHUB_ENV
