@@ -63,4 +63,4 @@ runs:
       shell: bash
       run: |
         output=$(cat output.txt)
-        echo "stdout=$(cat output.txt)" >> $GITHUB_OUTPUT
+        echo "stdout=$(cat output.txt)" >> "$GITHUB_OUTPUT"
