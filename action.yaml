@@ -61,4 +61,4 @@ runs:
       id: outputs
       shell: bash
       run: |
-        echo "outputs='Just Kidding'" >> $GITHUB_OUTPUT
+        echo "outputs='$(cat output.txt)'" >> $GITHUB_OUTPUT
