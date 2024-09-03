@@ -26,7 +26,7 @@ runs:
           local type=$1
           local command=$2
 
-          if [ -d ${{ inputs.path }}]; then
+          if [ -d ${{ inputs.path }} ]; then
             array=(`find ${{ inputs.path }}/ -maxdepth 1 -name "*.$type"`)
             if [ ${#array[@]} -gt 0 ]; then
               for script in ${{ inputs.path }}/*.$type; do
