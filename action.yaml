@@ -1,19 +1,14 @@
 name: 'run-script'
 description: 'Custom action to run arbitrary scripts'
 inputs:
-  lang:
-    description: 'language to use to run the script'
-    required: false
-  dir:
+  path:
     description: 'path of script directory'
     default: '.'
-  name:
-    description: 'name of the script including extension'
-    required: false
 outputs:
   stdout:
     description: "Std out"
     value: ${{ steps.output.outputs.stdout }}
+
 runs:
   using: composite
   steps:
@@ -22,58 +17,27 @@ runs:
       shell: bash
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
-
-    - name: Run bash script
-      if: ${{ inputs.lang == 'shell' }}
-      id: shell
-      run: ${{ inputs.dir }}/${{ inputs.name }} > output.txt
-      shell: bash
-
-    - name: Run python script
-      if: ${{ inputs.lang == 'python' }}
-      id: pip
-      run: |
-        python -m pip install --upgrade pip
-        if [ -f ${{ inputs.dir }}/requirements.txt ]; then pip install -r ${{ inputs.dir }}/requirements.txt; fi
-      shell: bash
-
-    - name: Run python script
-      if: ${{ inputs.lang == 'python' }}
-      id: python
-      run: |
-        python ${{ inputs.dir }}/${{ inputs.name }} > output.txt
-      shell: bash
-
-    - name: Run java
-      if: ${{ inputs.lang == 'java' }}
-      id: java
-      run: |
-        java -jar ${{ inputs.dir }}/${{ inputs.name }} > output.txt
-      shell: bash
-
-    - name: Run javascript
-      if: ${{ inputs.lang == 'javascript' }}
-      id: javascript
-      run: |
-        node ${{ inputs.dir }}/${{ inputs.name }} > output.txt
-      shell: bash
     
     - name: Run All Scripts
-      if: ${{ inputs.lang == "" }}
       id: all_scripts
       shell: bash
       run: |
         run_scripts() {
           local type=$1
           local command=$2
-
-          array=(`find ${{ inputs.dir }}/ -maxdepth 1 -name "*.$type"`)
-          if [ ${#array[@]} -gt 0 ]; then 
-            for script in ${{ inputs.dir }}/*.$type; do
-              echo "" >> output.txt
-              echo "$script output:" >> output.txt
-              $command "$script" >> output.txt
-            done
+          if [ -d ${{ inputs.path }}]; then
+            array=(`find ${{ inputs.path }}/ -maxdepth 1 -name "*.$type"`)
+            if [ ${#array[@]} -gt 0 ]; then
+              for script in ${{ inputs.path }}/*.$type; do
+                echo "" >> output.txt
+                echo "$script output:" >> output.txt
+                $command "$script" >> output.txt
+              done
+            fi
+          elif [ ${{ inputs.path }} == "*.$type" ]; then
+            echo "" >> output.txt
+            echo "$script output:" >> output.txt
+            $command "${{ inputs.path }}" >> output.txt
           fi
         }
 

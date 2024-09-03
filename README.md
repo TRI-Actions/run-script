@@ -6,9 +6,7 @@ A composite custom github action that runs given script in different languages.
 
 | Name          | Description                                        | Required | Default         |
 |---------------|----------------------------------------------------|----------|-----------------|
-| lang          | Language used for script. Possible values: `shell`, `python`, `java`, `javascript` | Yes      |                 |
-| dir           | Path of the script.                                | No       | `.`             |
-| name          | Name of the script including file extension        | Yes      |                 |
+| path           | Path of the script.                                | No       | `.`             |
 
 ## Example
 
@@ -25,8 +23,7 @@ jobs:
       id: run_script
       uses: infrastructure/run-script@v0.0.1
       with:
-        lang: python
-        name: test.py
+        path: "."
     - name: Display Output
         run: echo "Output: ${{ steps.run_script.outputs.stdout }}"
 ```
