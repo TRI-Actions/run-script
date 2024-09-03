@@ -62,5 +62,4 @@ runs:
       id: output
       shell: bash
       run: |
-        output=$(cat output.txt)
-        echo "stdout='$output'" >> $GITHUB_OUTPUT
+        echo "stdout=$(cat output.txt)" >> $GITHUB_OUTPUT
