@@ -68,7 +68,7 @@ runs:
           local command=$2
 
           array=(`find ${{ inputs.dir }}/ -maxdepth 1 -name "*.$type"`)
-          if [ ${#myarray[@]} -gt 0 ]; then 
+          if [ ${#array[@]} -gt 0 ]; then 
             for script in ${{ inputs.dir }}/*.$type; do
               echo "" >> output.txt
               echo "$script output:" >> output.txt
