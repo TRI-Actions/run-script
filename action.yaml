@@ -25,6 +25,7 @@ runs:
         run_scripts() {
           local type=$1
           local command=$2
+
           if [ -d ${{ inputs.path }}]; then
             array=(`find ${{ inputs.path }}/ -maxdepth 1 -name "*.$type"`)
             if [ ${#array[@]} -gt 0 ]; then
@@ -34,7 +35,7 @@ runs:
                 $command "$script" >> output.txt
               done
             fi
-          elif [ ${{ inputs.path }} == "*.$type" ]; then
+          elif [[ ${{ inputs.path }} == *.$type ]]; then
             echo "" >> output.txt
             echo "$script output:" >> output.txt
             $command "${{ inputs.path }}" >> output.txt
