@@ -47,7 +47,7 @@ runs:
           pip install -r ${{ inputs.dir }}/requirements.txt
         fi
 
-        echo "" > output.txt
+        echo "output of scripts below" > output.txt
 
         run_scripts "sh" "bash"
 
