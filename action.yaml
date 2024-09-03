@@ -56,11 +56,3 @@ runs:
         run_scripts "js" "node"
 
         run_scripts "java" "java -jar"
-
-    - name: Set output
-      if: always()
-      id: output
-      shell: bash
-      run: |
-        output=$(cat output.txt)
-        echo "stdout=$(cat output.txt)" >> "$GITHUB_OUTPUT"
