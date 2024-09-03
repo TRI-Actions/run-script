@@ -63,4 +63,4 @@ runs:
       shell: bash
       run: |
         output="testing"
-        echo "stdout=$output" >> $GITHUB_OUTPUT
+        echo "::set-output name=stdout::$output"
