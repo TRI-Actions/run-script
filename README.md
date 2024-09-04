@@ -25,5 +25,5 @@ jobs:
       with:
         path: "."
     - name: Display Output
-        run: echo "Output: $(cat output.txt)"
+      run: echo "Output: ${{ steps.run_script.outputs.stdout }}"
 ```
