@@ -32,13 +32,13 @@ runs:
               for script in ${{ inputs.path }}/*.$type; do
                 echo "" >> output.txt
                 echo "$script output:" >> output.txt
-                $command "$script" >> output.txt
+                $command "$script" >> output.txt 2>&1
               done
             fi
           elif [[ ${{ inputs.path }} == *.$type ]]; then
             echo "" >> output.txt
             echo "$script output:" >> output.txt
-            $command "${{ inputs.path }}" >> output.txt
+            $command "${{ inputs.path }}" >> output.txt 2>&1
           fi
         }
 
