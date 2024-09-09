@@ -26,18 +26,13 @@ runs:
           local type=$1
           local command=$2
 
-          echo "$type"
-          echo "$command"
-
           if [ -d ${{ inputs.path }} ]; then
             array=(`find ${{ inputs.path }}/ -maxdepth 1 -name "*.$type"`)
-            echo "$array"
             if [ ${#array[@]} -gt 0 ]; then
               for script in ${{ inputs.path }}/*.$type; do
                 echo "" >> output.txt
-                echo "$script output:" >> output.txt
+                echo "$script output:" >> output.txt 2>&1
                 $command "$script" >> output.txt
-                cat output.txt
               done
             fi
           elif [[ ${{ inputs.path }} == *.$type ]]; then
