@@ -44,7 +44,7 @@ runs:
 
         if [ -f ${{ inputs.path }}/requirements.txt ]; then 
           python -m pip install --upgrade pip
-          pip install -r ${{ inputs.dir }}/requirements.txt
+          pip install -r ${{ inputs.path }}/requirements.txt
         fi
 
         echo "output of scripts below" > output.txt
