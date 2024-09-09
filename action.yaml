@@ -54,7 +54,7 @@ runs:
 
         touch output.txt
 
-        echo "$environment"
+        export ENVIRONMENT="$environment"
 
         run_scripts "sh" "bash"
 
