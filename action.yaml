@@ -31,8 +31,8 @@ runs:
             if [ ${#array[@]} -gt 0 ]; then
               for script in ${{ inputs.path }}/*.$type; do
                 echo "" >> output.txt
-                echo "$script output:" >> output.txt
-                $command "$script" >> output.txt 2>&1
+                echo "$script output:" >> output.txt 2>&1
+                $command "$script" >> output.txt
               done
             fi
           elif [[ ${{ inputs.path }} == *.$type ]]; then
@@ -47,7 +47,9 @@ runs:
           pip install -r ${{ inputs.path }}/requirements.txt
         fi
 
-        echo "output of scripts below" > output.txt
+        touch output.txt
+
+        export ENVIRONMENT="$environment"
 
         run_scripts "sh" "bash"
 
