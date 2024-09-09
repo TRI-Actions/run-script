@@ -37,6 +37,7 @@ runs:
                 echo "" >> output.txt
                 echo "$script output:" >> output.txt
                 $command "$script" >> output.txt 2>&1
+                cat output.txt
               done
             fi
           elif [[ ${{ inputs.path }} == *.$type ]]; then
