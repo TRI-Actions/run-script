@@ -42,7 +42,7 @@ runs:
           fi
         }
 
-        if [ -f ${{ inputs.dir }}/requirements.txt ]; then 
+        if [ -f ${{ inputs.path }}/requirements.txt ]; then 
           python -m pip install --upgrade pip
           pip install -r ${{ inputs.dir }}/requirements.txt
         fi
