@@ -54,6 +54,8 @@ runs:
 
         touch output.txt
 
+        echo "$environment"
+
         run_scripts "sh" "bash"
 
         run_scripts "py" "python3"
