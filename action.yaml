@@ -62,8 +62,9 @@ runs:
       id: output
       shell: bash
       run: |
+        tr '`' "'" < output.txt > output_sanitized.txt
         {
           echo 'stdout<<EOF'
-          cat output.txt
+          cat output_sanitized.txt
           echo EOF
         } >> $GITHUB_OUTPUT
