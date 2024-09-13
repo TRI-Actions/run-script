@@ -70,3 +70,5 @@ runs:
           cat output_sanitized.txt
           echo EOF
         } >> $GITHUB_OUTPUT
+        rm -rf output.txt
+        rm -rf output_sanitized.txt
