@@ -1,3 +1,5 @@
+#NOTICE - This repo was copied from https://github.shared-services.aws.tri.global/infrastructure/run-script
+
 # Run Script
 
 A composite custom github action that runs given script in different languages and sets the output to output.txt
