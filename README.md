@@ -1,4 +1,4 @@
-#NOTICE - This repo was copied from https://github.shared-services.aws.tri.global/infrastructure/run-script ref: TRI-40381
+NOTICE - This repo was copied from https://github.shared-services.aws.tri.global/infrastructure/run-script ref: TRI-40381
 
 # Run Script
 
