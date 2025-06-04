@@ -64,7 +64,7 @@ runs:
       id: output
       shell: bash
       run: |
-        log_file='run-script-logs.txt'
+        log_file=$(mktemp -p . run-script-log.XXXXXX.txt)
         tr '`' "'" < output.txt > $log_file
 
         echo "log_path=$(pwd)/$log_file" >> "$GITHUB_OUTPUT"
