@@ -69,7 +69,3 @@ runs:
 
         echo "log_path=$(pwd)/$log_file" >> "$GITHUB_OUTPUT"
         rm -rf output.txt
-    
-    - name: check_output
-      shell: bash
-      run: echo "${{ steps.output.outputs.log_path}}"
