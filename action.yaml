@@ -67,5 +67,8 @@ runs:
         log_file='run-script-logs.txt'
         tr '`' "'" < output.txt > $log_file
 
-        echo "log_path='$(pwd)/$log_file'" >> "$GITHUB_OUTPUT"
+        echo "log_path=$(pwd)/$log_file" >> "$GITHUB_OUTPUT"
         rm -rf output.txt
+    
+    - name: check_output
+      run: echo "${{ steps.output.outputs.log_path}}"
