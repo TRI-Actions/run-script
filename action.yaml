@@ -5,9 +5,9 @@ inputs:
     description: 'path of script directory'
     default: '.'
 outputs:
-  stdout:
-    description: "Std out"
-    value: ${{ steps.output.outputs.stdout }}
+  log_path:
+    description: "log_path"
+    value: ${{ steps.output.outputs.log_path }}
 
 runs:
   using: composite
