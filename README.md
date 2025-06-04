@@ -24,6 +24,12 @@ jobs:
       uses: TRI-Actions/run-script@v0.0.1
       with:
         path: "."
-    - name: Display Output
-      run: echo "Output: ${{ steps.run_script.outputs.stdout }}"
+
+    # Downloads logs.txt to run-script-logs/logs.txt
+    - name: Download logs
+      uses: actions/download-artifact@v4
+      with:
+        name: run-script-logs
+        path: run-script-logs
+
 ```
