@@ -64,11 +64,4 @@ runs:
       id: output
       shell: bash
       run: |
-        tr '`' "'" < output.txt > logs.txt
-
-    # v3 is deprecated, however v4 is not supported on ghe. So must use v3
-    - name: Upload logs
-      uses: actions/upload-artifact@v3
-      with:
-        name: run-script-logs
-        path: logs.txt
+        tr '`' "'" < output.txt > run-script-logs.txt

@@ -27,7 +27,7 @@ jobs:
 
     # Downloads logs.txt to run-script-logs/logs.txt
     - name: Download logs
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v3
       with:
         name: run-script-logs
         path: run-script-logs
