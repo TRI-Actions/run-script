@@ -71,4 +71,5 @@ runs:
         rm -rf output.txt
     
     - name: check_output
+      shell: bash
       run: echo "${{ steps.output.outputs.log_path}}"
