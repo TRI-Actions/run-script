@@ -25,11 +25,7 @@ jobs:
       with:
         path: "."
 
-    # Downloads logs.txt to run-script-logs/logs.txt
-    - name: Download logs
-      uses: actions/download-artifact@v3
-      with:
-        name: run-script-logs
-        path: run-script-logs
+    - name: use logs
+      run: cat run-script-logs.txt
 
 ```
