@@ -21,11 +21,11 @@ jobs:
 
     - name: Run script
       id: run_script
-      uses: TRI-Actions/run-script@v0.0.1
+      uses: TRI-Actions/run-script@main
       with:
         path: "."
 
-    - name: use logs
-      run: cat run-script-logs.txt
+    - name: output log location
+      run: echo "Logs are located at: ${{ steps.run_script.outputs.run-script-logs }}"
 
 ```
