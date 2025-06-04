@@ -5,9 +5,9 @@ inputs:
     description: 'path of script directory'
     default: '.'
 outputs:
-  stdout:
-    description: "Std out"
-    value: ${{ steps.output.outputs.stdout }}
+  log_path:
+    description: "log_path"
+    value: ${{ steps.output.outputs.log_path }}
 
 runs:
   using: composite
@@ -64,11 +64,8 @@ runs:
       id: output
       shell: bash
       run: |
-        tr '`' "'" < output.txt > output_sanitized.txt
-        {
-          echo 'stdout<<EOF'
-          cat output_sanitized.txt
-          echo EOF
-        } >> $GITHUB_OUTPUT
+        log_file=$(mktemp -p . run-script-log.XXXXXX.txt)
+        tr '`' "'" < output.txt > $log_file
+
+        echo "log_path=$(pwd)/$log_file" >> "$GITHUB_OUTPUT"
         rm -rf output.txt
-        rm -rf output_sanitized.txt

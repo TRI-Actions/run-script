@@ -21,9 +21,11 @@ jobs:
 
     - name: Run script
       id: run_script
-      uses: TRI-Actions/run-script@v0.0.1
+      uses: TRI-Actions/run-script@main
       with:
         path: "."
-    - name: Display Output
-      run: echo "Output: ${{ steps.run_script.outputs.stdout }}"
+
+    - name: output log location
+      run: echo "Logs are located at: ${{ steps.run_script.outputs.run-script-logs }}"
+
 ```
